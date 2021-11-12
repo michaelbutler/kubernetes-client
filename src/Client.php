@@ -4,6 +4,7 @@ use Exception;
 use InvalidArgumentException;
 use BadMethodCallException;
 use Maclof\Kubernetes\Exceptions\ApiServerException;
+use Psr\Http\Client\ClientInterface;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 
@@ -153,10 +154,10 @@ class Client
 	 *
 	 * @param array $options
 	 * @param \Maclof\Kubernetes\RepositoryRegistry|null $repositoryRegistry
-	 * @param \Http\Client\HttpClient|null $httpClient
+	 * @param ClientInterface|null $httpClient Some client implementing PSR HTTP ClientInterface
 	 * @param \Http\Message\RequestFactory $httpRequestFactory
 	 */
-	public function __construct(array $options = [], RepositoryRegistry $repositoryRegistry = null, $httpClient = null, HttpRequestFactory $httpRequestFactory = null)
+	public function __construct(array $options = [], RepositoryRegistry $repositoryRegistry = null, ClientInterface $httpClient = null, HttpRequestFactory $httpRequestFactory = null)
 	{
 		$this->setOptions($options);
 		$this->classRegistry = $repositoryRegistry ?: new RepositoryRegistry();
