@@ -263,7 +263,7 @@ class Client
 				$clusters[$cluster['name']] = $cluster['cluster'];
 			}
 		}
-		if (count($clusters) == 0) {
+		if (count($clusters) === 0) {
 			throw new InvalidArgumentException('Kubeconfig parse error - No clusters are defined.');
 		}
 
@@ -273,7 +273,7 @@ class Client
 				$users[$user['name']] = $user['user'];
 			}
 		}
-		if (count($users) == 0) {
+		if (count($users) === 0) {
 			throw new InvalidArgumentException('Kubeconfig parse error - No users are defined.');
 		}
 
